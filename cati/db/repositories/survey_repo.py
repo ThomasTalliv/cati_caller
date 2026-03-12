@@ -38,8 +38,8 @@ class SurveyRepository:
             await self._add_skip_rule(survey.id, r_def)
 
         await self._session.commit()
-        await self._session.refresh(survey)
-        return survey
+        # Re-fetch with eager-loaded relationships
+        return await self.get(survey.id)  # type: ignore[return-value]
 
     async def _add_question(self, survey_id: uuid.UUID, q_def: QuestionDef) -> Question:
         question = Question(
@@ -108,7 +108,13 @@ class SurveyRepository:
         limit: int = 50,
         offset: int = 0,
     ) -> list[Survey]:
-        query = select(Survey).order_by(Survey.created_at.desc()).limit(limit).offset(offset)
+        query = (
+            select(Survey)
+            .options(selectinload(Survey.questions))
+            .order_by(Survey.created_at.desc())
+            .limit(limit)
+            .offset(offset)
+        )
         if status:
             query = query.where(Survey.status == status)
         result = await self._session.execute(query)
@@ -123,8 +129,7 @@ class SurveyRepository:
             if key in allowed:
                 setattr(survey, key, value)
         await self._session.commit()
-        await self._session.refresh(survey)
-        return survey
+        return await self.get(survey_id)  # type: ignore[return-value]
 
     async def set_status(self, survey_id: uuid.UUID, status: str) -> Survey | None:
         survey = await self.get(survey_id)
@@ -132,7 +137,7 @@ class SurveyRepository:
             return None
         survey.status = status
         await self._session.commit()
-        return survey
+        return await self.get(survey_id)
 
     async def delete(self, survey_id: uuid.UUID) -> bool:
         survey = await self.get(survey_id)

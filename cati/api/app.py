@@ -5,10 +5,18 @@ from typing import AsyncGenerator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import get_remote_address
+
 from cati.api.routers import health, surveys
+from cati.api.routers import calls, contacts, responses, analysis, exports
+from cati.telephony.call_events import router as webhooks_router
 from cati.db.engine import dispose_engine
 from config.logging import configure_logging
 from config.settings import get_settings
+
+limiter = Limiter(key_func=get_remote_address, default_limits=["200/minute"])
 
 
 @asynccontextmanager
@@ -31,6 +39,9 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
+    app.state.limiter = limiter
+    app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -41,5 +52,11 @@ def create_app() -> FastAPI:
 
     app.include_router(health.router)
     app.include_router(surveys.router)
+    app.include_router(calls.router)
+    app.include_router(contacts.router)
+    app.include_router(responses.router)
+    app.include_router(analysis.router)
+    app.include_router(exports.router)
+    app.include_router(webhooks_router)
 
     return app

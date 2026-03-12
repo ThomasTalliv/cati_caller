@@ -15,12 +15,12 @@ def get_engine() -> AsyncEngine:
     global _engine
     if _engine is None:
         settings = get_settings()
-        _engine = create_async_engine(
-            settings.db.postgres_url,
-            pool_size=settings.db.pool_size,
-            echo=settings.db.echo_sql,
-            future=True,
-        )
+        url = settings.db.postgres_url
+        kwargs: dict = {"echo": settings.db.echo_sql, "future": True}
+        # SQLite (used in tests) doesn't support pool_size
+        if not url.startswith("sqlite"):
+            kwargs["pool_size"] = settings.db.pool_size
+        _engine = create_async_engine(url, **kwargs)
     return _engine
 
 
