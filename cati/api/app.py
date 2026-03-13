@@ -1,9 +1,11 @@
 """FastAPI application factory."""
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import AsyncGenerator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -58,5 +60,11 @@ def create_app() -> FastAPI:
     app.include_router(analysis.router)
     app.include_router(exports.router)
     app.include_router(webhooks_router)
+
+    # Serve compiled frontend (Vite build output) at /
+    # Falls back gracefully if the dist directory doesn't exist yet (dev mode).
+    dist_dir = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+    if dist_dir.is_dir():
+        app.mount("/", StaticFiles(directory=str(dist_dir), html=True), name="frontend")
 
     return app
