@@ -75,7 +75,6 @@ async def listen_and_parse(
 ) -> InterviewState:
     """Parse the respondent's answer and record it."""
     from cati.interview.response_parser import ResponseParser
-    from cati.llm.router import get_llm_provider
 
     raw_text = state.last_respondent_text or ""
     if not raw_text.strip():
@@ -89,7 +88,8 @@ async def listen_and_parse(
         state.next_node = "close_interview"
         return state
 
-    parser = ResponseParser(llm or get_llm_provider())
+    from cati.llm.router import get_parsing_llm_provider
+    parser = ResponseParser(llm or get_parsing_llm_provider())
     value, is_refused, confidence = await parser.parse(
         raw_text=raw_text,
         question_type=q_def["question_type"],

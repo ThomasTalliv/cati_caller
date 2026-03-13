@@ -1,8 +1,8 @@
 """Kokoro TTS provider — Apache 2.0, sub-100ms TTFB, multilingual."""
 from __future__ import annotations
 
-import io
-import struct
+import functools
+import hashlib
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING
 
@@ -19,11 +19,24 @@ log = structlog.get_logger(__name__)
 _KOKORO_SAMPLE_RATE = 24000  # kokoro outputs 24kHz
 _TARGET_SAMPLE_RATE = 16000  # target for telephony
 
+# Maximum number of (text, voice) pairs kept in the TTS audio cache.
+# Each entry is ~160 KB for a 5-second utterance at 16kHz 16-bit mono.
+# 512 entries ≈ 80 MB — safe for a long-running worker process.
+_TTS_CACHE_SIZE = 512
+
+
+def _cache_key(text: str, voice: str) -> str:
+    """Short stable key for (text, voice) — avoids huge dict keys."""
+    return hashlib.md5(f"{voice}:{text}".encode()).hexdigest()
+
 
 class KokoroTTSProvider(TTSProvider):
-    """Kokoro-82M TTS integration.
+    """Kokoro-82M TTS integration with audio caching.
 
-    Kokoro is loaded lazily on first use to avoid GPU initialisation at import.
+    The audio cache stores rendered PCM bytes keyed by (text, voice).
+    For batch survey campaigns where thousands of respondents receive
+    identical question texts, each question is synthesised only once.
+
     Requires: pip install kokoro soundfile torch
     """
 
@@ -32,6 +45,10 @@ class KokoroTTSProvider(TTSProvider):
         self._default_voice = voice
         self._device = device
         self._pipeline = None
+        # LRU cache: key → PCM bytes.  Thread-safe for reads; writes use a lock.
+        self._cache: dict[str, bytes] = {}
+        self._cache_hits = 0
+        self._cache_misses = 0
 
     def _load(self) -> None:
         if self._pipeline is not None:
@@ -50,7 +67,6 @@ class KokoroTTSProvider(TTSProvider):
         """Convert numpy float32 array to 16-bit PCM bytes, resampled to 16 kHz."""
         import numpy as np
 
-        # Resample if needed
         if sample_rate != _TARGET_SAMPLE_RATE:
             try:
                 import torchaudio  # type: ignore[import]
@@ -59,7 +75,6 @@ class KokoroTTSProvider(TTSProvider):
                 resampled = torchaudio.functional.resample(tensor, sample_rate, _TARGET_SAMPLE_RATE)
                 audio_array = resampled.squeeze(0).numpy()
             except ImportError:
-                # Fallback: simple linear interpolation resample
                 ratio = _TARGET_SAMPLE_RATE / sample_rate
                 new_len = int(len(audio_array) * ratio)
                 audio_array = np.interp(
@@ -68,7 +83,6 @@ class KokoroTTSProvider(TTSProvider):
                     audio_array,
                 )
 
-        # Clip and convert to int16
         clipped = np.clip(audio_array, -1.0, 1.0)
         int16 = (clipped * 32767).astype(np.int16)
         return int16.tobytes()
@@ -76,9 +90,26 @@ class KokoroTTSProvider(TTSProvider):
     async def synthesize(self, text: str, *, voice: str | None = None) -> bytes:
         import asyncio
 
-        return await asyncio.get_event_loop().run_in_executor(
-            None, self._synthesize_sync, text, voice or self._default_voice
+        used_voice = voice or self._default_voice
+        key = _cache_key(text, used_voice)
+
+        if key in self._cache:
+            self._cache_hits += 1
+            log.debug("tts_cache_hit", hits=self._cache_hits, key=key[:8])
+            return self._cache[key]
+
+        self._cache_misses += 1
+        pcm = await asyncio.get_event_loop().run_in_executor(
+            None, self._synthesize_sync, text, used_voice
         )
+
+        # Evict oldest entry if cache is full
+        if len(self._cache) >= _TTS_CACHE_SIZE:
+            oldest_key = next(iter(self._cache))
+            del self._cache[oldest_key]
+
+        self._cache[key] = pcm
+        return pcm
 
     def _synthesize_sync(self, text: str, voice: str) -> bytes:
         self._load()
@@ -92,21 +123,18 @@ class KokoroTTSProvider(TTSProvider):
         self, text: str, *, voice: str | None = None
     ) -> AsyncIterator[bytes]:
         import asyncio
+        import concurrent.futures
 
         self._load()
         used_voice = voice or self._default_voice
         loop = asyncio.get_event_loop()
 
-        # Kokoro generates sentence-by-sentence; yield each as a chunk
         def _iter():
             for _, _, audio in self._pipeline(text, voice=used_voice, speed=1.0):
                 if audio is not None:
                     yield self._pcm_from_audio(audio, _KOKORO_SAMPLE_RATE)
 
-        # Run generator in executor and yield results
-        import concurrent.futures
         executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-
         gen = _iter()
         while True:
             try:
@@ -115,6 +143,16 @@ class KokoroTTSProvider(TTSProvider):
             except StopIteration:
                 break
 
+    def cache_stats(self) -> dict:
+        total = self._cache_hits + self._cache_misses
+        hit_rate = self._cache_hits / total if total else 0.0
+        return {
+            "hits": self._cache_hits,
+            "misses": self._cache_misses,
+            "hit_rate": round(hit_rate, 3),
+            "cached_entries": len(self._cache),
+        }
+
     @property
     def sample_rate(self) -> int:
         return _TARGET_SAMPLE_RATE
@@ -122,3 +160,4 @@ class KokoroTTSProvider(TTSProvider):
     @property
     def provider_name(self) -> str:
         return "kokoro"
+

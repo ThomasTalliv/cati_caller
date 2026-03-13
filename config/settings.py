@@ -58,6 +58,12 @@ class LLMSettings(BaseSettings):
     max_tokens: int = 4096
     temperature: float = 0.3
 
+    # Cost optimisation: cheaper/faster model for live response parsing.
+    # Set to "" to reuse the primary model (safe default).
+    # Recommended: "claude-haiku-4-5-20251001" (Anthropic) or "gpt-4o-mini" (OpenAI)
+    parsing_model: str = ""
+    parsing_max_tokens: int = 256
+
 
 class ExportSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="EXPORT__", env_file=".env", extra="ignore")

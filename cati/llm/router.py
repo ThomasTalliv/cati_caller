@@ -50,44 +50,52 @@ class RouterLLMProvider(LLMProvider):
         return self._primary.model_name
 
 
-@lru_cache(maxsize=1)
-def get_llm_provider() -> LLMProvider:
-    """Build and cache the configured LLM provider."""
-    from config.settings import get_settings
-    settings = get_settings()
-    llm = settings.llm
-
-    primary: LLMProvider
-    fallback: LLMProvider | None = None
-
-    if llm.primary_provider == "anthropic":
+def _build_provider(provider: str, llm_settings, *, model_override: str = "") -> LLMProvider:
+    """Instantiate a single LLM provider, optionally with a model override."""
+    if provider == "anthropic":
         from cati.llm.anthropic_provider import AnthropicProvider
-        primary = AnthropicProvider(
-            api_key=llm.anthropic_api_key,
-            model=llm.anthropic_model,
-            max_tokens=llm.max_tokens,
-            temperature=llm.temperature,
+        model = model_override or llm_settings.anthropic_model
+        return AnthropicProvider(
+            api_key=llm_settings.anthropic_api_key,
+            model=model,
+            max_tokens=llm_settings.max_tokens,
+            temperature=llm_settings.temperature,
         )
-        if llm.openai_api_key:
-            from cati.llm.openai_provider import OpenAIProvider
-            fallback = OpenAIProvider(
-                api_key=llm.openai_api_key,
-                model=llm.openai_model,
-                temperature=llm.temperature,
-            )
     else:
         from cati.llm.openai_provider import OpenAIProvider
-        primary = OpenAIProvider(
-            api_key=llm.openai_api_key,
-            model=llm.openai_model,
-            temperature=llm.temperature,
+        model = model_override or llm_settings.openai_model
+        return OpenAIProvider(
+            api_key=llm_settings.openai_api_key,
+            model=model,
+            temperature=llm_settings.temperature,
         )
-        if llm.anthropic_api_key:
-            from cati.llm.anthropic_provider import AnthropicProvider
-            fallback = AnthropicProvider(
-                api_key=llm.anthropic_api_key,
-                model=llm.anthropic_model,
-                temperature=llm.temperature,
-            )
 
+
+@lru_cache(maxsize=1)
+def get_llm_provider() -> LLMProvider:
+    """Build and cache the primary (analysis) LLM provider."""
+    from config.settings import get_settings
+    llm = get_settings().llm
+    primary = _build_provider(llm.primary_provider, llm)
+    fallback: LLMProvider | None = None
+    other = "openai" if llm.primary_provider == "anthropic" else "anthropic"
+    other_key = llm.openai_api_key if other == "openai" else llm.anthropic_api_key
+    if other_key:
+        fallback = _build_provider(other, llm)
     return RouterLLMProvider(primary=primary, fallback=fallback)
+
+
+@lru_cache(maxsize=1)
+def get_parsing_llm_provider() -> LLMProvider:
+    """Build and cache the cheap parsing LLM provider.
+
+    If LLM__PARSING_MODEL is set, uses that model (e.g. claude-haiku-4-5-20251001
+    or gpt-4o-mini). Falls back to the primary provider when not configured.
+    """
+    from config.settings import get_settings
+    llm = get_settings().llm
+    if not llm.parsing_model:
+        # No separate parsing model configured — share the primary provider
+        return get_llm_provider()
+    primary = _build_provider(llm.primary_provider, llm, model_override=llm.parsing_model)
+    return RouterLLMProvider(primary=primary, fallback=None)
