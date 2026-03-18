@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James PM — GTD Board</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .add-card-form {
+      margin-top: 8px;
+      display: none;
+    }
+    .add-card-form.open { display: block; }
+    .add-card-form input { margin-bottom: 6px; }
+    .add-card-form .form-row { display: flex; gap: 6px; }
+    .col-count {
+      background: var(--border);
+      border-radius: 100px;
+      padding: 1px 7px;
+      font-size: 0.7rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="toast-container"></div>
+
+  <script src="/static/app.js"></script>
+  <script>
+  let _projects = [];
+  let _dragItem = null;
+
+  async function init() {
+    try {
+      _projects = await GET('/api/projects');
+    } catch(e) {
+      _projects = [];
+    }
+    render();
+    setActiveNav();
+  }
+
+  function render() {
+    // Collect all cards per column across projects
+    const cols = {
+      inbox: [],
+      next_actions: [],
+      waiting_for: [],
+      done: [],
+    };
+
+    _projects.forEach(p => {
+      (p.inbox || []).forEach((text, i) => {
+        cols.inbox.push({ text, project: p, type: 'inbox', lineIndex: -1, idx: i });
+      });
+      (p.next_actions || []).filter(t => !t.completed).forEach(t => {
+        cols.next_actions.push({ text: t.text, project: p, type: 'next_actions', lineIndex: t.line_index });
+      });
+      (p.waiting_for || []).filter(t => !t.completed).forEach(t => {
+        cols.waiting_for.push({ text: t.text, project: p, type: 'waiting_for', lineIndex: t.line_index });
+      });
+      // Done = completed next_actions + waiting_for
+      (p.next_actions || []).filter(t => t.completed).forEach(t => {
+        cols.done.push({ text: t.text, project: p, type: 'done', lineIndex: t.line_index });
+      });
+      (p.waiting_for || []).filter(t => t.completed).forEach(t => {
+        cols.done.push({ text: t.text, project: p, type: 'done', lineIndex: t.line_index });
+      });
+    });
+
+    const colDefs = [
+      { key: 'inbox',        label: 'Inbox' },
+      { key: 'next_actions', label: 'Next Actions' },
+      { key: 'waiting_for',  label: 'Waiting For' },
+      { key: 'done',         label: 'Done (denne uge)' },
+    ];
+
+    const projectOptions = _projects.map(p =>
+      `<option value="${p.id}">${p.name}</option>`
+    ).join('');
+
+    document.getElementById('app').innerHTML = `
+      ${renderNav()}
+      <div class="container">
+        <div class="section-title" style="margin-bottom:16px">GTD Kanban</div>
+        <div class="kanban-board" id="kanban-board">
+          ${colDefs.map(col => `
+            <div class="kanban-col"
+              id="col-${col.key}"
+              data-col="${col.key}"
+              ondragover="onDragOver(event)"
+              ondragleave="onDragLeave(event)"
+              ondrop="onDrop(event,'${col.key}')">
+              <div class="kanban-col-header">
+                <span>${col.label}</span>
+                <span class="col-count">${cols[col.key].length}</span>
+              </div>
+              <div class="kanban-cards" id="cards-${col.key}">
+                ${cols[col.key].map((card, i) => renderCard(card, col.key, i)).join('')}
+              </div>
+              ${col.key !== 'done' ? `
+              <button class="btn btn-ghost btn-sm w-full" style="margin-top:8px"
+                onclick="toggleAddForm('${col.key}')">+ Tilføj</button>
+              <div class="add-card-form" id="add-form-${col.key}">
+                <select id="add-proj-${col.key}">${projectOptions}</select>
+                <input type="text" id="add-text-${col.key}" placeholder="Handling...">
+                <div class="form-row">
+                  <button class="btn btn-primary btn-sm" onclick="addCard('${col.key}')">Gem</button>
+                  <button class="btn btn-ghost btn-sm" onclick="toggleAddForm('${col.key}')">Annuller</button>
+                </div>
+              </div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      ${renderBrainstormModal(_projects)}
+    `;
+
+    // Add drag events after render
+    document.querySelectorAll('.kanban-card[draggable]').forEach(card => {
+      card.addEventListener('dragstart', onDragStart);
+      card.addEventListener('dragend', onDragEnd);
+    });
+  }
+
+  function renderCard(card, col, i) {
+    if (!card.project) return '';
+    const color = card.project.color || '#6366f1';
+    const lineIndex = card.lineIndex;
+    const data = JSON.stringify({ projectId: card.project.id, lineIndex, fromCol: col }).replace(/"/g, '&quot;');
+    return `
+      <div class="kanban-card"
+        style="--project-color:${color}"
+        draggable="${col !== 'done'}"
+        data-card="${data}"
+        id="card-${col}-${i}">
+        <div class="kanban-card-text">${escHtml(card.text)}</div>
+        <div class="flex items-center justify-between mt-1">
+          <span class="kanban-card-project" style="color:${color}">${escHtml(card.project.name)}</span>
+          ${col !== 'done' ? `
+          <button class="btn-icon" style="font-size:0.7rem;padding:2px 6px"
+            onclick='checkCard(this, ${JSON.stringify({ projectId: card.project.id, lineIndex })})'>✓</button>` : ''}
+        </div>
+      </div>`;
+  }
+
+  // ─── Drag and drop ──────────────────────────────────────────────
+
+  function onDragStart(e) {
+    _dragItem = e.currentTarget;
+    e.currentTarget.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', e.currentTarget.dataset.card);
+  }
+
+  function onDragEnd(e) {
+    e.currentTarget.classList.remove('dragging');
+    document.querySelectorAll('.kanban-col').forEach(c => c.classList.remove('drag-over'));
+  }
+
+  function onDragOver(e) {
+    e.preventDefault();
+    e.currentTarget.classList.add('drag-over');
+  }
+
+  function onDragLeave(e) {
+    e.currentTarget.classList.remove('drag-over');
+  }
+
+  async function onDrop(e, targetCol) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('drag-over');
+    const raw = e.dataTransfer.getData('text/plain');
+    if (!raw) return;
+    let card;
+    try { card = JSON.parse(raw); } catch { return; }
+
+    if (card.fromCol === targetCol) return;
+
+    try {
+      if (targetCol === 'done') {
+        await PUT(`/api/projects/${card.projectId}/gtd`, {
+          line_index: card.lineIndex,
+          target_section: 'done',
+        });
+      } else {
+        await PUT(`/api/projects/${card.projectId}/gtd`, {
+          line_index: card.lineIndex,
+          target_section: targetCol,
+        });
+      }
+      showToast('Gemt');
+      _projects = await GET('/api/projects');
+      render();
+    } catch(e2) {
+      showToast(e2.message, 'error');
+    }
+  }
+
+  // ─── Check off card ──────────────────────────────────────────────
+
+  async function checkCard(btn, info) {
+    try {
+      await PUT(`/api/projects/${info.projectId}/task`, {
+        line_index: info.lineIndex,
+        completed: true,
+      });
+      showToast('Gemt');
+      _projects = await GET('/api/projects');
+      render();
+    } catch(e) {
+      showToast(e.message, 'error');
+    }
+  }
+
+  // ─── Add card ────────────────────────────────────────────────────
+
+  function toggleAddForm(col) {
+    const form = document.getElementById(`add-form-${col}`);
+    form.classList.toggle('open');
+    if (form.classList.contains('open')) {
+      document.getElementById(`add-text-${col}`)?.focus();
+    }
+  }
+
+  async function addCard(col) {
+    const projectId = document.getElementById(`add-proj-${col}`).value;
+    const text = document.getElementById(`add-text-${col}`).value.trim();
+    if (!text) return;
+
+    try {
+      await POST(`/api/projects/${projectId}/inbox`, { text, section: col });
+      showToast('Gemt');
+      _projects = await GET('/api/projects');
+      render();
+    } catch(e) {
+      showToast(e.message, 'error');
+    }
+  }
+
+  function escHtml(s) {
+    if (!s) return '';
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  init();
+  </script>
+</body>
+</html>

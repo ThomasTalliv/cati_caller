@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James PM — Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="app"></div>
+  <div id="toast-container"></div>
+
+  <script src="/static/app.js"></script>
+  <script>
+  let _projects = [];
+
+  async function init() {
+    try {
+      _projects = await GET('/api/projects');
+    } catch (e) {
+      _projects = [];
+    }
+    render();
+    setActiveNav();
+  }
+
+  function render() {
+    const today = new Date();
+    const weekAgo = new Date(today); weekAgo.setDate(today.getDate() - 7);
+
+    // Aggregate next actions across projects (top 5, deadline-prioritized)
+    let allActions = [];
+    _projects.forEach(p => {
+      (p.next_actions || []).filter(t => !t.completed).forEach(t => {
+        allActions.push({ ...t, project: p, projectId: p.id, projectColor: p.color });
+      });
+    });
+    // Sort: projects with critical deadline first
+    allActions.sort((a, b) => {
+      const order = { critical: 0, warning: 1, ok: 2 };
+      return (order[a.project.deadline_status] || 2) - (order[b.project.deadline_status] || 2);
+    });
+    const topActions = allActions.slice(0, 5);
+
+    // Critical dependencies
+    const critDeps = _projects.filter(p => p.critical_dependency && p.critical_dependency.trim());
+
+    // Weekly completed (tasks with completed=true counted as "done")
+    const weekDone = _projects.reduce((acc, p) => {
+      const ms = (p.milestones || []).reduce((a, m) =>
+        a + m.tasks.filter(t => t.completed).length, 0);
+      return acc + ms;
+    }, 0);
+
+    document.getElementById('app').innerHTML = `
+      ${renderNav()}
+      <div class="container">
+
+        <!-- Today's focus -->
+        <div class="section">
+          <div class="section-title">Dagens fokus — Top Next Actions</div>
+          ${topActions.length === 0
+            ? '<div class="empty-state">Ingen aktive next actions 🎉</div>'
+            : `<div class="card">
+                ${topActions.map(t => `
+                  <div class="task-item">
+                    <input type="checkbox" class="task-checkbox"
+                      ${t.completed ? 'checked' : ''}
+                      onchange="toggleAction(this, '${t.projectId}', ${t.line_index})">
+                    <div class="flex-1">
+                      <div class="task-text ${t.completed ? 'completed' : ''}">${escHtml(t.text)}</div>
+                      <div class="text-xs" style="color:${t.projectColor};margin-top:2px">${escHtml(t.project.name)}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>`
+          }
+        </div>
+
+        <!-- Critical dependencies -->
+        ${critDeps.length > 0 ? `
+        <div class="section">
+          <div class="section-title">Kritiske afhængigheder</div>
+          <div class="card">
+            ${critDeps.map(p => `
+              <div class="flex items-center gap-2" style="padding:6px 0;border-bottom:1px solid var(--border)">
+                <div class="project-badge" style="--project-color:${p.color}"></div>
+                <span class="text-sm font-bold">${escHtml(p.name)}</span>
+                <span class="text-sm text-muted">→</span>
+                <span class="text-sm">${escHtml(p.critical_dependency)}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>` : ''}
+
+        <!-- Week progress -->
+        <div class="section">
+          <div class="section-title">Uge-fremdrift</div>
+          <div class="card" style="display:inline-block;padding:12px 24px">
+            <span style="font-size:2rem;font-weight:700">${weekDone}</span>
+            <span class="text-muted text-sm" style="margin-left:8px">completed tasks i alt</span>
+          </div>
+        </div>
+
+        <!-- Project cards -->
+        <div class="section">
+          <div class="section-title">Projekter</div>
+          <div class="card-grid">
+            ${_projects.map(p => renderProjectCard(p)).join('')}
+          </div>
+        </div>
+
+      </div>
+      ${renderBrainstormModal(_projects)}
+    `;
+  }
+
+  function renderProjectCard(p) {
+    const dlClass = deadlineClass(p.deadline_status);
+    return `
+      <a href="/projekt/${p.id}" style="text-decoration:none">
+        <div class="card project-card" style="--project-color:${p.color}">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold">${escHtml(p.name)}</span>
+            ${statusBadge(p.progress, p.deadline_status)}
+          </div>
+          <div class="text-xs text-muted mb-2">
+            ${p.current_phase ? `Fase: ${escHtml(p.current_phase)}` : ''}
+          </div>
+          ${p.next_deadline ? `
+          <div class="text-sm ${dlClass}" style="margin-bottom:8px">
+            📅 ${escHtml(p.next_deadline)}
+          </div>` : ''}
+          ${progressBar(p.progress)}
+        </div>
+      </a>`;
+  }
+
+  async function toggleAction(checkbox, projectId, lineIndex) {
+    try {
+      await PUT(`/api/projects/${projectId}/task`, {
+        line_index: lineIndex,
+        completed: checkbox.checked,
+      });
+      showToast('Gemt');
+      // Reload to reflect updated state
+      _projects = await GET('/api/projects');
+      render();
+    } catch (e) {
+      showToast(e.message, 'error');
+      checkbox.checked = !checkbox.checked;
+    }
+  }
+
+  function escHtml(s) {
+    if (!s) return '';
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James PM — Projekt</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .status-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .status-field:last-child { border-bottom: none; }
+    .status-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+    .project-accent-bar {
+      height: 4px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .add-task-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .wbs-tasks { margin-left: 24px; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="toast-container"></div>
+
+  <script src="/static/app.js"></script>
+  <script>
+  const projectId = decodeURIComponent(window.location.pathname.replace('/projekt/', ''));
+  let _project = null;
+
+  async function init() {
+    await reload();
+    setActiveNav();
+  }
+
+  async function reload() {
+    try {
+      _project = await GET(`/api/projects/${encodeURIComponent(projectId)}`);
+      render();
+    } catch(e) {
+      document.getElementById('app').innerHTML = `
+        ${renderNav()}
+        <div class="container">
+          <div class="empty-state">Fejl: ${escHtml(e.message)}</div>
+        </div>`;
+    }
+  }
+
+  function render() {
+    const p = _project;
+    document.title = `James PM — ${p.name}`;
+
+    document.getElementById('app').innerHTML = `
+      ${renderNav()}
+      <div class="container">
+
+        <!-- Accent bar -->
+        <div class="project-accent-bar" style="background:${p.color}"></div>
+
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-3" style="flex-wrap:wrap;gap:12px">
+          <h1 style="font-size:1.4rem;font-weight:700">${escHtml(p.name)}</h1>
+          <div class="flex gap-2">
+            ${statusBadge(p.progress, p.deadline_status)}
+            <button class="btn btn-ghost btn-sm" onclick="openModal('brainstorm-modal')">+ Brainstorm</button>
+          </div>
+        </div>
+
+        <!-- A: Vision & Status -->
+        <div class="section">
+          <div class="section-title">Vision & Status</div>
+          ${p.vision ? `<div class="vision-quote mb-3">${escHtml(p.vision)}</div>` : ''}
+          <div class="card">
+            ${renderStatusField('Nuværende fase', p.current_phase, 'current_phase')}
+            ${renderStatusField('Næste deadline', p.next_deadline, 'next_deadline')}
+            ${renderStatusField('Kritisk afhængighed', p.critical_dependency, 'critical_dependency')}
+          </div>
+        </div>
+
+        <!-- B: Milestones -->
+        <div class="section">
+          <div class="section-title">Milestones</div>
+          ${p.milestones.length === 0
+            ? '<div class="empty-state">Ingen milestones fundet i ROADMAP.md</div>'
+            : p.milestones.map((m, mi) => renderMilestone(m, mi)).join('')
+          }
+        </div>
+
+        <!-- C: WBS -->
+        ${p.wbs && p.wbs.length > 0 ? `
+        <div class="section">
+          <div class="section-title">Work Breakdown Structure</div>
+          ${p.wbs.map(wm => renderWBSMilestone(wm)).join('')}
+        </div>` : ''}
+
+        <!-- D: Decisions -->
+        <div class="section">
+          <div class="section-title">Beslutningslog</div>
+          <div class="card">
+            ${renderDecisions(p.decisions)}
+            <button class="btn btn-ghost btn-sm mt-3" onclick="openModal('decision-modal')">+ Tilføj beslutning</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Decision modal -->
+      <div class="modal-overlay" id="decision-modal">
+        <div class="modal">
+          <div class="modal-title">Tilføj beslutning</div>
+          <div style="margin-bottom:10px">
+            <label class="text-xs text-muted" style="display:block;margin-bottom:4px">Dato</label>
+            <input type="date" id="dec-date" value="${today()}">
+          </div>
+          <div style="margin-bottom:10px">
+            <label class="text-xs text-muted" style="display:block;margin-bottom:4px">Beslutning</label>
+            <input type="text" id="dec-decision" placeholder="Hvad blev besluttet?">
+          </div>
+          <div style="margin-bottom:10px">
+            <label class="text-xs text-muted" style="display:block;margin-bottom:4px">Rationale</label>
+            <input type="text" id="dec-rationale" placeholder="Hvorfor?">
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-ghost btn-sm" onclick="closeModal('decision-modal')">Annuller</button>
+            <button class="btn btn-primary btn-sm" onclick="saveDecision()">Gem</button>
+          </div>
+        </div>
+      </div>
+
+      ${renderBrainstormModal([p])}
+    `;
+  }
+
+  function today() {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  // ─── Status fields ──────────────────────────────────────────────────────
+
+  function renderStatusField(label, value, fieldKey) {
+    return `
+      <div class="status-field">
+        <span class="status-label">${label}</span>
+        <span class="inline-edit"
+          contenteditable="true"
+          data-field="${fieldKey}"
+          onblur="saveStatusField(this)"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}"
+          >${escHtml(value || '')}</span>
+      </div>`;
+  }
+
+  async function saveStatusField(el) {
+    const field = el.dataset.field;
+    const value = el.textContent.trim();
+    try {
+      await PUT(`/api/projects/${encodeURIComponent(projectId)}/status`, { field, value });
+      showToast('Gemt');
+      await reload();
+    } catch(e) {
+      showToast(e.message, 'error');
+    }
+  }
+
+  // ─── Milestones ─────────────────────────────────────────────────────────
+
+  function renderMilestone(m, mi) {
+    const pct = m.progress;
+    const cls = pct === 100 ? 'done' : '';
+    const statusLabel = pct === 100
+      ? '<span class="badge badge-ok">✅ Done</span>'
+      : pct > 0
+        ? '<span class="badge badge-accent">🟢 In progress</span>'
+        : '<span class="badge badge-muted">⚪ Not started</span>';
+
+    return `
+      <div class="milestone-block">
+        <div class="milestone-header">
+          <span class="milestone-name">${escHtml(m.name)}</span>
+          <div class="flex items-center gap-2">
+            ${statusLabel}
+            <span class="milestone-target">
+              Target:
+              <input type="date" class="inline-date-input"
+                style="background:transparent;border:none;color:var(--muted);font-size:0.8rem;cursor:pointer;outline:none;width:auto"
+                value="${parseDateValue(m.target)}"
+                onchange="saveMilestoneDate('${escAttr(m.name)}', this.value)"
+                title="${m.target}">
+            </span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill ${cls}" style="width:${pct}%"></div>
+        </div>
+        <div class="text-xs text-muted mb-3">${pct}% — ${m.tasks.filter(t=>t.completed).length}/${m.tasks.length} tasks</div>
+        <div class="task-list" id="ms-tasks-${mi}">
+          ${m.tasks.map(t => renderTaskItem(t, mi)).join('')}
+        </div>
+        <div class="add-task-row">
+          <input type="text" id="new-task-${mi}" placeholder="Ny aktivitet..." style="flex:1">
+          <button class="btn btn-ghost btn-sm" onclick="addTask('${escAttr(m.name)}', ${mi})">Tilføj</button>
+        </div>
+      </div>`;
+  }
+
+  function renderTaskItem(t, mi) {
+    return `
+      <div class="task-item">
+        <input type="checkbox" class="task-checkbox"
+          ${t.completed ? 'checked' : ''}
+          onchange="toggleTask(this, ${t.line_index})">
+        <span class="task-text ${t.completed ? 'completed' : ''}"
+          contenteditable="${t.completed ? 'false' : 'true'}"
+          onblur="editTaskText(this, ${t.line_index})"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}"
+          >${escHtml(t.text)}</span>
+      </div>`;
+  }
+
+  function parseDateValue(target) {
+    if (!target) return '';
+    const m = target.match(/(\d{4}-\d{2}-\d{2})/);
+    return m ? m[1] : '';
+  }
+
+  async function toggleTask(checkbox, lineIndex) {
+    try {
+      await PUT(`/api/projects/${encodeURIComponent(projectId)}/task`, {
+        line_index: lineIndex,
+        completed: checkbox.checked,
+      });
+      showToast('Gemt');
+      await reload();
+    } catch(e) {
+      showToast(e.message, 'error');
+      checkbox.checked = !checkbox.checked;
+    }
+  }
+
+  async function editTaskText(el, lineIndex) {
+    const newText = el.textContent.trim();
+    if (!newText) return;
+    try {
+      await PUT(`/api/projects/${encodeURIComponent(projectId)}/edit-task`, {
+        line_index: lineIndex,
+        new_text: newText,
+      });
+      showToast('Gemt');
+    } catch(e) {
+      showToast(e.message, 'error');
+    }
+  }
+
+  async function addTask(milestoneName, mi) {
+    const input = document.getElementById(`new-task-${mi}`);
+    const text = input.value.trim();
+    if (!text) return;
+    try {
+      await PUT(`/api/projects/${encodeURIComponent(projectId)}/add-task`, {
+        milestone_name: milestoneName,
+        task_text: text,
+      });
+      input.value = '';
+      showToast('Task tilføjet');
+      await reload();
+    } catch(e) {
+      showToast(e.message, 'error');
+    }
+  }
+
+  async function saveMilestoneDate(milestoneName, date) {
+    try {
+      await PUT(`/api/projects/${encodeURIComponent(projectId)}/milestone-date`, {
+        milestone_name: milestoneName,
+        target_date: date,
+      });
+      showToast('Dato gemt');
+      await reload();
+    } catch(e) {
+      showToast(e.message, 'error');
+    }
+  }
+
+  // ─── WBS ─────────────────────────────────────────────────────────────────
+
+  function renderWBSMilestone(wm) {
+    return `
+      <div class="wbs-milestone">
+        <div style="font-weight:600;margin-bottom:8px">${escHtml(wm.name)}</div>
+        ${wm.epics.map(e => renderWBSEpic(e)).join('')}
+      </div>`;
+  }
+
+  function renderWBSEpic(epic) {
+    const id = 'epic-' + Math.random().toString(36).slice(2);
+    return `
+      <div class="wbs-epic">
+        <div class="wbs-epic-header" onclick="toggleEpic('${id}')">
+          <span class="wbs-epic-toggle" id="toggle-${id}">▼</span>
+          <span>${escHtml(epic.name)}</span>
+        </div>
+        <div class="wbs-tasks" id="${id}">
+          ${epic.tasks.map(t => `
+            <div class="task-item">
+              <input type="checkbox" class="task-checkbox"
+                ${t.completed ? 'checked' : ''}
+                onchange="toggleTask(this, ${t.line_index})">
+              <span class="task-text ${t.completed ? 'completed' : ''}">${escHtml(t.text)}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+  }
+
+  function toggleEpic(id) {
+    const tasks = document.getElementById(id);
+    const toggle = document.getElementById('toggle-' + id);
+    const collapsed = tasks.style.display === 'none';
+    tasks.style.display = collapsed ? '' : 'none';
+    toggle.textContent = collapsed ? '▼' : '▶';
+  }
+
+  // ─── Decisions ────────────────────────────────────────────────────────────
+
+  function renderDecisions(decisions) {
+    if (!decisions || decisions.length === 0) {
+      return '<div class="text-sm text-muted">Ingen beslutninger registreret endnu.</div>';
+    }
+    return `
+      <table class="decision-table">
+        <thead>
+          <tr>
+            <th style="width:100px">Dato</th>
+            <th>Beslutning</th>
+            <th>Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${decisions.map(d => `
+            <tr>
+              <td class="text-muted text-sm">${escHtml(d.date)}</td>
+              <td class="text-sm">${escHtml(d.decision)}</td>
+              <td class="text-sm text-muted">${escHtml(d.rationale)}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`;
+  }
+
+  async function saveDecision() {
+    const date = document.getElementById('dec-date').value;
+    const decision = document.getElementById('dec-decision').value.trim();
+    const rationale = document.getElementById('dec-rationale').value.trim();
+    if (!decision) return;
+    try {
+      await POST(`/api/projects/${encodeURIComponent(projectId)}/decision`, { date, decision, rationale });
+      showToast('Beslutning gemt');
+      closeModal('decision-modal');
+      await reload();
+    } catch(e) {
+      showToast(e.message, 'error');
+    }
+  }
+
+  function escHtml(s) {
+    if (!s) return '';
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  function escAttr(s) {
+    if (!s) return '';
+    return String(s).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+  }
+
+  init();
+  </script>
+</body>
+</html>
