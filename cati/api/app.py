@@ -13,6 +13,7 @@ from slowapi.util import get_remote_address
 
 from cati.api.routers import health, surveys
 from cati.api.routers import calls, contacts, responses, analysis, exports
+from cati.api.routers import manuscript_review
 from cati.telephony.call_events import router as webhooks_router
 from cati.db.engine import dispose_engine
 from config.logging import configure_logging
@@ -59,6 +60,7 @@ def create_app() -> FastAPI:
     app.include_router(responses.router)
     app.include_router(analysis.router)
     app.include_router(exports.router)
+    app.include_router(manuscript_review.router)
     app.include_router(webhooks_router)
 
     # Serve compiled frontend (Vite build output) at /
