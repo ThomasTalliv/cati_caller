@@ -3,7 +3,7 @@ from pathlib import Path
 
 # Base path for the project files
 # Can be overridden with JAMES_PM_BASE_PATH environment variable
-DEFAULT_BASE_PATH = "/Users/thomasciliushansen/Documents/Claude/01 Projekter"
+DEFAULT_BASE_PATH = "/Users/thomasciliushansen/Desktop/01 projekter/projekt management"
 
 BASE_PATH = Path(os.environ.get("JAMES_PM_BASE_PATH", DEFAULT_BASE_PATH))
 
