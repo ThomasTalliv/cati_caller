@@ -1,73 +1,70 @@
 # AI starter her
 
-*En praktisk guide til AI-parathed i danske organisationer*
-
----
-
 ## Forord
 
-Denne bog er skrevet, fordi der mangler noget.
+Denne bog er skrevet ud fra en enkel overbevisning: den største barriere for kunstig intelligens i danske organisationer er ikke teknologien. Det er ledelsen.
 
-Der mangler en praktisk, nøgtern guide til, hvordan danske organisationer faktisk arbejder med AI — ikke som et teknologiprojekt, men som en organisatorisk transformation. Der er masser af bøger om, hvad AI er. Der er konferencer om, hvad AI kan. Men der er forbløffende lidt om, hvad du som leder, mellemleder eller medarbejder konkret gør mandag morgen for at gøre din organisation klar.
+Gennem de seneste år har jeg set hundredvis af organisationer kaste sig over AI med stor entusiasme og endnu større budgetter. Jeg har set bestyrelser nikke til flotte strategipresentationer, direktioner underskrive kontrakter med teknologileverandorer, og mellemledere sende deres medarbejdere pa kursus. Og jeg har set alt for mange af disse initiativer do stille og roligt, fordi ingen havde forberedt den organisation, der skulle bruge teknologien.
 
-Det er den bog, du holder i hænderne.
+Denne bog er mit forsog pa at rette op pa det.
 
-"AI starter her" er ikke en teknisk håndbog. Den er en ledelsesbog. Den handler om de mennesker, strukturer og beslutninger, der afgør, om AI skaber reel værdi — eller bare skaber omkostninger og frustration.
+"AI starter her" er ikke en teknisk bog. Den handler ikke om algoritmer, programmeringssprog eller maskinlaringsmodeller. Den handler om det, der kommer for teknologien: den organisatoriske parathed, der afgor, om AI skaber reel vardi eller blot bliver endnu et dyrt projekt, der ender i en skuffe.
 
-Bogen er bygget op omkring én central model: en modenhedsmodel for AI-parathed, der giver dig et ærligt billede af, hvor din organisation befinder sig. Hvert kapitel oversætter denne model til konkrete værktøjer for et specifikt organisatorisk niveau — fra bestyrelse til den enkelte medarbejder.
+**Hvem er bogen til?** Den er skrevet til alle, der har et ansvar i en organisation. Til bestyrelsesmedlemmet, der skal stille de rigtige sporgsmaal. Til direktoren, der skal prioritere og allokere ressourcer. Til mellemlederen, der skal oversatte strategi til hverdag. Og til medarbejderen, der star over for en teknologi, der andrer rammerne for arbejdet.
 
-**Hvem er bogen til?**
-- Bestyrelsesmedlemmer, der skal føre kvalificeret tilsyn med AI-indsatsen
-- Direktionsmedlemmer, der skal prioritere og skabe eksekveringskraft
-- Mellemledere, der skal lede forandringen i hverdagen
-- Medarbejdere, der vil forstå deres rolle og forme deres fremtid
+**Hvordan bruger du bogen?** Bogen er bygget op i fem dele. Del 1 saetter scenen og introducerer modenhedsmodellen, der er bogens rode trad. Del 2 giver konkrete varktoejer til hvert organisatorisk niveau, fra bestyrelse til den enkelte medarbejder. Del 3 handler om de praktiske forudsatninger: data, kompetencer, kultur og etik. Del 4 ser fremad og pa skalering. Del 5 samler tradene.
 
-**Hvordan bruger du bogen?**
-Du kan læse den fra ende til anden, men du behøver ikke. Start med kapitel 1 og 2 for at forstå præmissen og modenhedsmodellen. Læs derefter det kapitel, der matcher dit organisatoriske niveau (kapitel 3-6). Læs kapitel 8 for at se, hvordan det hele hænger sammen. Og dyk ned i Del 3, når du er klar til at handle.
+Hvert kapitel slutter med et afsnit kaldet "Hvad gor du mandag morgen?" med konkrete handlinger, du kan tage med det samme. Brug dem. Viden uden handling er underholdning.
 
-Hvert kapitel slutter med "Hvad gør du mandag morgen?" — konkrete handlinger, du kan tage med det samme. Fordi viden uden handling er underholdning.
+Jeg har bevidst holdt bogen fri for hype og overdrevne lofter. AI er et kraftfuldt varktoj, men det er stadig et varktoj. Det erstatter ikke menneskelig dommekraft, faglig ekspertise eller organisatorisk modenhed. Det forstærker dem, nar forudsatningerne er pa plads.
 
-God læsning. Og god mandag morgen.
+Min ambition er, at denne bog giver dig det sprog, de rammer og den handlekraft, der skal til for at gore din organisation AI-parat. Ikke perfekt. Ikke fra dag et. Men parat til at starte, lare og udvikle sig, trin for trin.
 
-
----
+AI starter her. Med dig.
 
 ## Indholdsfortegnelse
 
-**Del 1: Udgangspunktet — Hvorfor AI-parathed er et ledelsesansvar**
-- Kapitel 1: AI starter her (ikke i IT-afdelingen) — *Hvorfor AI er en organisatorisk transformation, ikke et teknologiprojekt*
-- Kapitel 2: Hvad AI-parathed faktisk betyder — *Modenhedsmodellen og de fem søjler*
+### Del 1: Udgangspunktet — Hvorfor AI-parathed er et ledelsesansvar
 
-**Del 2: Ansvaret, arbejdet og styringsmodellen**
-- Kapitel 3: Bestyrelsen — Strategisk mandat og governance-ramme — *AI Governance Canvas*
-- Kapitel 4: Direktionen — Fra strategi til eksekveringsmandat — *AI Portfolio Prioritization Matrix og Accountability Map*
-- Kapitel 5: Mellemlederen — Forandringsledelse og teamtransformation — *Team AI Readiness Scorecard og Adoption Playbook*
-- Kapitel 6: Medarbejderen — Fra bruger til medskaber — *Personal AI Impact Model og AI Use Case Journal*
-- Kapitel 7: Nøglerollerne — AI-champion, dataejer og etisk vagthund — *AI Role Mandate Template*
-- Kapitel 8: Styringsmodellen — Sådan hænger det hele sammen — *AI Readiness Operating Model*
+- **Kapitel 1: AI starter her (ikke i IT-afdelingen)** — Hvorfor de fleste organisationer ikke er parate til AI, og hvad AI-parathed egentlig betyder.
+- **Kapitel 2: Hvad AI-parathed faktisk betyder** — Modenhedsmodellen med fem trin og fem dimensioner, bogens centrale varktoj.
 
-**Del 3: Implementeringen — Fra ambition til virkelighed**
-- Kapitel 9: De første 90 dage — Hvor starter man? — *Køreplan med milepæle*
-- Kapitel 10: Data, infrastruktur og den kedelige sandhed — *Data Readiness Checklist*
-- Kapitel 11: Kultur spiser AI-strategi til morgenmad — *Forandringsledelse i praksis*
-- Kapitel 12: Ansvarlig AI — Etik, bias og gennemsigtighed — *Responsible AI Checklist*
-- Kapitel 13: Skalering — Fra pilot til organisatorisk praksis — *Fra eksperiment til drift*
+### Del 2: Ansvaret, arbejdet og styringsmodellen
 
-**Del 4: Perspektivet — Hvad nu?**
-- Kapitel 14: AI om to år — Det du skal forberede dig på nu — *Agentiske systemer og fremtidens organisation*
-- Kapitel 15: AI starter her — med dig — *Handlinger for alle niveauer*
+- **Kapitel 3: Bestyrelsen — Strategisk mandat og governance-ramme** — AI Governance Canvas og bestyrelsens tilsynsrolle.
+- **Kapitel 4: Direktionen — Fra strategi til eksekveringsmandat** — AI Portfolio Prioritization Matrix og AI Accountability Map.
+- **Kapitel 5: Mellemlederen — Forandringsledelse og teamtransformation** — Team AI Readiness Scorecard og Adoption Playbook.
+- **Kapitel 6: Medarbejderen — Fra bruger til medskaber** — Personal AI Impact Model og AI Use Case Journal.
+- **Kapitel 7: Noglerollerne — AI-champion, dataejer og etisk vagthund** — De tre roller, der binder systemet sammen.
+- **Kapitel 8: Styringsmodellen — Sadan hanger det hele sammen** — AI Readiness Operating Model, den samlede driftsmodel.
 
-**Appendikser**
-- Appendiks A: Terminologiliste
-- Appendiks B: Samlet framework-oversigt
-- Appendiks C: Templates og skabeloner
+### Del 3: Det praktiske fundament
 
+- **Kapitel 9: De forste 90 dage — Hvor starter man?** — Konkret koreplan for de forste tre maneder.
+- **Kapitel 10: Data, infrastruktur og den kedelige sandhed** — Data Readiness Checklist og pragmatisk datatilgang.
+- **Kapitel 11: Kultur spiser AI-strategi til morgenmad** — Forandringsledelse, modstand og kommunikation.
+- **Kapitel 12: Ansvarlig AI — Etik, bias og gennemsigtighed** — Responsible AI Checklist, bias-screening og guardrails.
+
+### Del 4: Skalering og fremtid
+
+- **Kapitel 13: Skalering — Fra pilot til organisatorisk praksis** — Skaleringskriterier, organisationsmodeller og vidensdeling.
+- **Kapitel 14: AI om to ar — Det du skal forberede dig pa nu** — Agentbaserede systemer, gradueret autonomi og fremtidens organisationsdesign.
+
+### Del 5: Afrunding
+
+- **Kapitel 15: AI starter her — med dig** — Sammenfatning, handlingsplan for alle niveauer og afsluttende refleksion.
+
+### Appendikser
+
+- **Appendiks A: Terminologiliste** — Konsekvent brug af termer i bogen.
+- **Appendiks B: Samlet framework-oversigt** — Alle bogens varktoejer og modeller pa et blik.
+- **Appendiks C: Templates og skabeloner** — Samlede skabeloner til praktisk brug.
 
 ---
 
 ## Del 1: Udgangspunktet — Hvorfor AI-parathed er et ledelsesansvar
 
-# Kapitel 1 — AI starter her (ikke i IT-afdelingen)
+### Kapitel 1: AI starter her (ikke i IT-afdelingen)
 
 Der sidder lige nu en direktør et sted i Danmark og underskriver en kontrakt på et tocifret millionbeløb for en AI-platform. Beslutningen blev taget på et bestyrelsesmøde, hvor en ekstern rådgiver viste imponerende slides med automatiserede processer, prædiktive modeller og effektiviseringspotentiale. Alle nikkede. Alle var enige. Og om tolv til atten måneder vil projektet med stor sandsynlighed ligge stille — ikke fordi teknologien ikke virkede, men fordi organisationen aldrig var klar til at bruge den.
 
@@ -147,7 +144,7 @@ Hvert kapitel slutter med et afsnit, der hedder "Hvad gør du mandag morgen?" �
 
 Man kan altid argumentere for, at timingen ikke er rigtig. At man skal vente, til teknologien er mere moden. At markedet skal stabilisere sig. At man mangler den rigtige kompetence.
 
-Men her er virkeligheden: AI-teknologiens kapaciteter vokser med stigende hastighed, om end ujævnt på tværs af domæner. Det, der var avanceret for to år siden, er i dag standardværktøj. Og det, der er avanceret i dag, vil være standard om to år.
+Men her er virkeligheden: AI-teknologiens kapaciteter vokser med stigende hastighed, om end ujævnt på tværs af domæner. Det, der var avanceret for to år siden, er i dag ofte standardværktøj. Og det, der er avanceret i dag, vil være standard om to år.
 
 Organisationer, der venter, kommer ikke bare bagud teknologisk. De kommer bagud organisatorisk. Fordi AI-parathed ikke er noget, man køber eller installerer. Det er noget, man opbygger over tid. Det kræver, at mennesker lærer nye ting, at kulturer ændrer sig, at processer tilpasses, at ledelse tager ansvar. Og alt det tager tid.
 
@@ -169,7 +166,9 @@ Det er præcis det, denne bog hjælper dig med.
 
 ---
 
-# Kapitel 2 — Hvad AI-parathed faktisk betyder
+---
+
+### Kapitel 2: Hvad AI-parathed faktisk betyder
 
 Du kender sikkert fornemmelsen: Du sidder til et ledermøde, og nogen siger, at organisationen skal "blive bedre til AI." Alle nikker. Men bag nikkene gemmer sig en stille forvirring. Hvad betyder det egentlig? Skal vi ansætte datascientister? Købe nye systemer? Lave en strategi? Sende folk på kursus?
 
@@ -349,14 +348,11 @@ I de kommende kapitler oversætter vi modellen til handling — niveau for nivea
 
 5. **Vælg den dimension, der scorer lavest**, og læs det relevante kapitel i denne bog som det næste. Start der, hvor behovet er størst — ikke der, hvor det er nemmest.
 
-
 ---
 
 ## Del 2: Ansvaret, arbejdet og styringsmodellen
 
-
-
-# Kapitel 3 — Bestyrelsen: Strategisk mandat og governance-ramme
+### Kapitel 3: Bestyrelsen: Strategisk mandat og governance-ramme
 
 De fleste bestyrelser har prøvet det. Et punkt på dagsordenen hedder "Digital transformation" eller "AI-status". Direktionen præsenterer et par slides med logoer fra teknologileverandører, en tidslinje med pilotprojekter og et budget, der ser overkommeligt ud. Bestyrelsen nikker, stiller et par høflige spørgsmål og går videre til næste punkt. Seks måneder senere er pilotprojekterne enten stoppet stille og roligt, eller de er vokset til noget, ingen rigtig har overblik over.
 
@@ -409,7 +405,7 @@ EU's AI-forordning (AI Act) er allerede en realitet og stiller specifikke krav a
 
 AI-investeringer er vanskelige at vurdere, fordi en stor del af værdien ofte ligger i kapabilitetsopbygning snarere end direkte afkast. Den første AI-anvendelse i en organisation har sjældent den bedste business case isoleret set — men den opbygger data, kompetencer og processer, der gør de næste ti anvendelser muligt.
 
-Bestyrelsen skal derfor vurdere AI-investeringer som en **portefølje**, ikke som enkeltprojekter. Direktionens porteføljeoversigt (beskrevet i kapitel 4) giver grundlaget for denne vurdering. Bestyrelsen skal stille krav om, at porteføljen indeholder en blanding af quick wins og langsigtede strategiske satsninger.
+Bestyrelsen skal derfor vurdere AI-investeringer som en **portefølje**, ikke som enkeltprojekter. Direktionens porteføljeoversigt (beskrevet i kapitel 4) giver grundlaget for denne vurdering. Bestyrelsen skal stille krav om, at porteføljen indeholder en blanding af quick wins (hurtige gevinster) og langsigtede strategiske satsninger.
 
 ### Kvadrant 4: Fremdrift og modenhed
 
@@ -526,7 +522,9 @@ Kapitel 8 samler dette governance-mandat med de øvrige niveauers rammer i én s
 
 ---
 
-# Kapitel 4 — Direktionen: Fra strategi til eksekveringsmandat
+---
+
+### Kapitel 4: Direktionen: Fra strategi til eksekveringsmandat
 
 Bestyrelsen har sat rammen. Mandatet er på plads. Og nu sidder direktionen med den opgave, der altid er sværere end den lyder: at omsætte strategisk ambition til konkret handling.
 
@@ -705,8 +703,11 @@ Kapitel 8 samler denne eksekveringslogik med de øvrige niveauers rammer i én s
 4. **Etablér rapporteringskæden.** Aftal med mellemlederne (jf. kapitel 5), hvad de rapporterer, hvornår og i hvilket format. Aftal med bestyrelsen, hvad I leverer kvartalsvis. Brug skabelonerne fra dette kapitel og kapitel 3.
 
 5. **Genbesøg om tre måneder.** Sæt en dato i kalenderen nu. Prioriteringer ændrer sig. Modenhed stiger. Teknologien udvikler sig. En kvartalsvis genbesøgning er ikke bureaukrati — det er sund ledelseshygiejne.
+---
 
-# Kapitel 5: Mellemlederen — Forandringsledelse og teamtransformation
+---
+
+### Kapitel 5: Mellemlederen — Forandringsledelse og teamtransformation
 
 Du sidder i mødelokalet med dit team. Direktionen har netop sendt en mail om, at AI skal "integreres i alle forretningsprocesser inden årets udgang." Dine medarbejdere kigger på dig. Nogle er nysgerrige. Andre har krydset armene. En enkelt har allerede spurgt, om det her betyder fyringer. Og du tænker: *Hvor starter jeg overhovedet?*
 
@@ -729,6 +730,9 @@ Scorecarden er dit diagnostiske værktøj. Den måler dit teams AI-parathed på 
 **Vigtigt:** Denne scorecard aggregerer direkte til direktionens prioriteringsmodel (se kapitel 4). Når du udfylder den, leverer du samtidig data, der hjælper ledelsen med at træffe bedre beslutninger om ressourcer og investeringer. Den bygger også videre på modenhedsmodellen fra kapitel 2 — din teamscore afspejler, hvor I befinder jer på organisationens samlede modenhedsrejse.
 
 ### De fem dimensioner
+
+> **Bemærk:** Scorecardets fem dimensioner (Kompetencer, Mindset, Processer, Data, Ledelsessupport) er tilpasset teamniveauet og er ikke identiske med modenhedsmodellens fem organisatoriske dimensioner (Kultur, Kompetencer, Data, Governance, Ledelsesmandat) fra kapitel 2. Scorecardets "Mindset" svarer til den kulturelle dimension set fra teamets perspektiv. "Processer" dækker den operationelle parathed, som på organisationsniveau indgår under Governance og Kompetencer. "Ledelsessupport" afspejler Ledelsesmandatet, som det opleves lokalt. Denne tilpasning sikrer, at scorecarden er praktisk anvendelig på teamniveau, samtidig med at resultaterne kan aggregeres opad og informere den organisatoriske modenhedsvurdering.
+
 
 #### 1. Kompetencer — Kan teamet bruge AI-værktøjer?
 
@@ -775,7 +779,7 @@ AI uden data er som en kok uden ingredienser. Det handler ikke om big data eller
 | 1 | Data er spredt, utilgængelig eller af dårlig kvalitet | Kortlæg, hvilke data teamet producerer og bruger. Tal med IT om adgang. Dette er et grundlæggende problem, der skal løses først. |
 | 2 | Noget data er tilgængelig, men ustruktureret | Prioritér den vigtigste datakilde. Brug tid på at rydde op og strukturere — det er en investering, der betaler sig mange gange. |
 | 3 | Teamet har adgang til relevante data i brugbare formater | Godt udgangspunkt. Undersøg, om der er datasæt fra andre afdelinger, der kunne berige jeres analyser. |
-| 4 | Data er velorganiseret og integreret med teamets værktøjer | Fokuser på datasikkerhed og governance (styring af dataanvendelse). Sørg for, at I bruger data ansvarligt. Se også kapitel 8 om etiske retningslinjer. |
+| 4 | Data er velorganiseret og integreret med teamets værktøjer | Fokuser på datasikkerhed og governance (styring af dataanvendelse). Sørg for, at I bruger data ansvarligt. Se også kapitel 12 om ansvarlig AI. |
 | 5 | Teamet har en stærk datakultur med løbende kvalitetssikring | I er forbilleder. Del jeres tilgang med resten af organisationen. |
 
 #### 5. Ledelsessupport — Har du som mellemleder det nødvendige mandat?
@@ -817,7 +821,7 @@ Nu ved du, hvor I står. Adoption Playbook fortæller dig, hvordan I bevæger je
 - Hold en 90-minutters workshop: "AI for vores team." Ingen teori. Vis tre konkrete eksempler, der er relevante for teamets opgaver.
 - Lad alle prøve ét AI-værktøj individuelt i løbet af den første uge. Giv dem en simpel opgave: "Brug AI til at lave et udkast til [noget I alligevel skal lave]."
 - Saml teamet efter to uger: Hvad opdagede I? Hvad overraskede jer? Hvad virkede ikke?
-- Sørg for, at alle forstår grundlæggende begrænsninger: AI kan halluciner (opfinde fakta), AI er ikke neutral, AI kræver kvalitetssikring.
+- Sørg for, at alle forstår grundlæggende begrænsninger: AI kan hallucinere (opfinde fakta), AI er ikke neutral, AI kræver kvalitetssikring.
 
 **Håndtering af modstand i denne fase:**
 Modstand i Awareness-fasen handler næsten altid om det ukendte. Den bedste medicin er erfaring. Tving ingen til begejstring, men insistér på, at alle prøver. Der er forskel på at sige "det tror jeg ikke på" efter at have prøvet, og at sige det uden at have rørt et tastatur.
@@ -895,7 +899,7 @@ Ikke alt kan løses på teamniveau. Her er fire situationer, hvor du skal eskale
 
 2. **Tværgående afhængigheder:** AI-løsningen kræver data eller samarbejde fra en anden afdeling, og du kan ikke selv forhandle det på plads.
 
-3. **Etiske gråzoner:** Dit team er i tvivl om, hvorvidt en bestemt AI-anvendelse er forsvarlig — f.eks. i forhold til persondata, bias (skævheder i data), eller kunders tillid. Eskalér altid, når I er i tvivl. Se også kapitel 8 om etisk AI-anvendelse.
+3. **Etiske gråzoner:** Dit team er i tvivl om, hvorvidt en bestemt AI-anvendelse er forsvarlig — f.eks. i forhold til persondata, bias (skævheder i data), eller kunders tillid. Eskalér altid, når I er i tvivl. Se også kapitel 12 om ansvarlig AI.
 
 4. **Organisatorisk modstand opad:** Din egen leder bremser aktivt eller passivt. Det er ubehageligt, men nødvendigt at adressere. Tag din scorecard med — den taler med tal, ikke med frustrationer.
 
@@ -913,7 +917,9 @@ Ikke alt kan løses på teamniveau. Her er fire situationer, hvor du skal eskale
 
 ---
 
-# Kapitel 6: Medarbejderen — Fra bruger til medskaber
+---
+
+### Kapitel 6: Medarbejderen — Fra bruger til medskaber
 
 Din kollega har lige vist dig noget. Hun har brugt et AI-værktøj til at lave et udkast til den rapport, du plejer at bruge en hel dag på. Det tog hende 20 minutter. Udkastet er ikke perfekt, men det er 80 procent dér. Og du tænker to ting samtidig: *Det er ret imponerende* og *hvad betyder det for mig?*
 
@@ -944,7 +950,7 @@ Start med at lave en liste over dine faktiske opgaver i en typisk uge. Ikke jobb
 | **AI kan forbedre** | Opgaver, hvor AI tilføjer noget, du ikke selv kan — f.eks. analysere store mængder data eller identificere mønstre | Finde tendenser i kundefeedback, sammenligne store datasæt, opdage afvigelser | AI udvider dine evner. Du fortolker og handler. |
 | **AI er irrelevant** | Opgaver, der kræver menneskelig relation, etisk vurdering, kreativ originalitet eller fysisk tilstedeværelse | Svære samtaler med kollegaer, strategiske skøn, forhandling, omsorg | Du er uerstattelig. AI kan måske forberede, men ikke udføre. |
 
-**Vigtig pointe:** De fleste opdager, at langt flere af deres opgaver falder i "assistere" og "irrelevant" end i "automatisere." Det er normal. AI erstatter sjældent hele opgaver — den ændrer, hvordan opgaven udføres.
+**Vigtig pointe:** De fleste opdager, at langt flere af deres opgaver falder i "assistere" og "irrelevant" end i "automatisere." Det er normalt. AI erstatter sjældent hele opgaver — den ændrer, hvordan opgaven udføres.
 
 ### Lag 2: Mine kompetencer — Hvad skal jeg lære, og hvad bliver vigtigere?
 
@@ -1116,9 +1122,9 @@ Du er ikke i konkurrence med AI. Du er i samarbejde med AI. Forskellen er afgør
 
 4. **Book en samtale med din leder.** Brug resultaterne fra din selvvurdering som udgangspunkt. Sig: "Jeg har kortlagt, hvor AI kan hjælpe mig mest. Kan vi tale om, hvordan jeg bedst kommer i gang?" Din mellemleder har brug for din input til sin scorecard (kapitel 5) — du gør jer begge en tjeneste.
 
+---
 
-
-# Kapitel 7 — Nøglerollerne: AI-champion, dataejer og etisk vagthund
+### Kapitel 7: Nøglerollerne: AI-champion, dataejer og etisk vagthund
 
 Da en mellemstor dansk produktionsvirksomhed besluttede sig for at investere i kunstig intelligens, gjorde direktionen det rigtige: De afsatte budget, valgte et pilotprojekt og hyrede en ekstern konsulent til at bygge en predictive maintenance-løsning — et system der forudsiger, hvornår maskiner har brug for vedligeholdelse. Seks måneder senere stod løsningen klar. Tolv måneder senere brugte ingen den.
 
@@ -1315,7 +1321,9 @@ Jeres nuværende modenhedsniveau bestemmer, hvor formaliserede rollerne skal væ
 
 ---
 
-# Kapitel 8 — Styringsmodellen: Sådan hænger det hele sammen
+---
+
+### Kapitel 8: Styringsmodellen: Sådan hænger det hele sammen
 
 I syv kapitler har vi bygget fundamentet sten for sten. Modenhedsvurdering. Governance Canvas. Accountability Map. Prioriteringsmatrix. Scorecards. Personlige udviklingsplaner. Roller og mandater. Hvert element har sin logik, sit formål, sin plads.
 
@@ -1430,8 +1438,8 @@ Nedenstående diagram viser hele systemet — fra bestyrelse til medarbejder, me
 ║  FUNDAMENT: MODENHEDSMODEL (kap. 2) — 5 niveauer                          ║
 ║  ┌──────────┬──────────┬──────────┬──────────┬──────────┐                  ║
 ║  │ Niveau 1 │ Niveau 2 │ Niveau 3 │ Niveau 4 │ Niveau 5 │                  ║
-║  │ Ubevidst │Udforsk-  │Struktur- │Optimer-  │Transform-│                  ║
-║  │          │ ende     │ eret     │ et       │ ativ     │                  ║
+║  │ Ubevidst │Nysger-   │Eksperi-  │Integre-  │Transfor- │                  ║
+║  │          │ rig      │ mentere- │ rende    │ merende  │                  ║
 ║  └──────────┴──────────┴──────────┴──────────┴──────────┘                  ║
 ║  Anvendes som vurderingsramme på ALLE niveauer og i ALLE frameworks        ║
 ║                                                                            ║
@@ -1658,11 +1666,9 @@ I er klar.
 
 ---
 
-## Del 3: Implementeringen — Fra ambition til virkelighed
+## Del 3: Det praktiske fundament
 
-
-
-# Kapitel 9: De første 90 dage — Hvor starter man?
+### Kapitel 9: De første 90 dage — Hvor starter man?
 
 Du har læst strategidokumentet. Du har nikket til præsentationen fra direktionen. Du har måske endda været på kursus. Men nu sidder du mandag morgen med en kop kaffe og tænker: *Hvad gør jeg helt konkret nu?*
 
@@ -1682,11 +1688,11 @@ I kapitel 2 præsenterede vi modenhedsmodellen med fem dimensioner: kultur, komp
 
 | Dimension | Spørgsmål til vurderingen | Typisk fælde |
 |---|---|---|
-| **Strategi** | Har vi en klar idé om, *hvad* AI skal løse for os — ikke bare *at* vi skal bruge det? | At forveksle en AI-strategi med en teknologistrategi |
+| **Kultur** | Er der en åbenhed for at eksperimentere med AI, og tør folk prøve nyt? | At forveksle en AI-strategi med en teknologistrategi |
 | **Data** | Kender vi vores vigtigste datakilder, og er de tilgængelige? | At antage, at data er "på plads", fordi det ligger i et system |
-| **Teknologi** | Har vi en grundlæggende infrastruktur, der kan understøtte AI-eksperimenter? | At købe platforme, før man kender behovene |
+| **Governance** | Har vi klare rammer for ansvar, etik og beslutningskompetencer for AI? | At starte uden klare rammer for ansvar og risikostyring |
 | **Kompetencer** | Har vi mennesker, der kan bygge, bruge og evaluere AI-løsninger? | At tro, at ét kursus løser kompetencegabet |
-| **Organisation** | Har vi en governancestruktur, der kan håndtere AI-beslutninger? | At starte uden klare roller og ansvar |
+| **Ledelsesmandat** | Har ledelsen givet et klart og vedvarende mandat til AI-indsatsen? | At starte uden klare roller og ansvar |
 
 Resultatet af denne vurdering er ikke et tal på en skala. Det er et fælles billede af, *hvor I er*, og *hvor de største huller er*. Det billede bestemmer, hvad de næste 90 dage skal handle om.
 
@@ -1848,7 +1854,9 @@ Men husk: de første 90 dage handler ikke om at bevise, at AI kan alt. De handle
 
 ---
 
-# Kapitel 10: Data, infrastruktur og den kedelige sandhed
+---
+
+### Kapitel 10: Data, infrastruktur og den kedelige sandhed
 
 Lad os starte med det, ingen rigtig har lyst til at høre: den største barriere for AI i din organisation er ikke teknologi, strategi eller kompetencer. Det er data.
 
@@ -2032,8 +2040,11 @@ Det er ikke glamourøst. Men det virker.
 3. **Vurdér "godt nok"-niveauet.** Brug tabellen over datakrav for forskellige projekttyper til at definere, hvad "gode nok" data konkret betyder for dit projekt. Skriv det ned som del af pilotprojektets succeskriterier.
 
 4. **Spørg "hvad afspejler vores data?"** Før du bruger historiske data til AI, saml teamet i 30 minutter og stil spørgsmålet: Hvilke skævheder, fordomme eller blinde vinkler kan vores data indeholde? Dokumentér svarene, og tag dem med i designet af løsningen.
+---
 
-# Kapitel 11 — Kultur spiser AI-strategi til morgenmad
+---
+
+### Kapitel 11: Kultur spiser AI-strategi til morgenmad
 
 ## Den bedste strategi, ingen fulgte
 
@@ -2229,7 +2240,9 @@ Tre ting, mellemlederen har brug for:
 
 ---
 
-# Kapitel 12 — Ansvarlig AI: Etik, bias og gennemsigtighed
+---
+
+### Kapitel 12: Ansvarlig AI: Etik, bias og gennemsigtighed
 
 ## Algoritmen, der sagde nej
 
@@ -2247,7 +2260,7 @@ Lad os gøre det til handling.
 
 Hver gang I overvejer en ny AI-anvendelse, skal den igennem en vurdering. Ikke en langstrakt bureaukratisk proces, men en struktureret gennemgang, der sikrer, at I har tænkt de vigtige spørgsmål igennem.
 
-Her er en tjekliste, der kan bruges per use case (use case). Tilpas den til jeres kontekst, men fjern ikke elementer uden en god begrundelse.
+Her er en tjekliste, der kan bruges per use case. Tilpas den til jeres kontekst, men fjern ikke elementer uden en god begrundelse.
 
 ### Responsible AI Checklist
 
@@ -2290,7 +2303,7 @@ Før I træner eller tilpasser en AI-model, stil disse spørgsmål:
 Når modellen er trænet eller konfigureret:
 
 - **Opdelt evaluering:** Test AI-systemets præcision og fejlrater opdelt på relevante grupper (køn, alder, geografi osv.). Hvis systemet er markant dårligere for én gruppe, er der et problem.
-- **Kanttilfælde (edge cases):** Test med usædvanlige eller ekstreme input. Hvordan håndterer systemet dem?
+- **Grænsetilfælde (edge cases):** Test med usædvanlige eller ekstreme input. Hvordan håndterer systemet dem?
 - **Modsatrettede eksempler:** Lav test, hvor du ændrer én variabel (f.eks. navn, køn, adresse) og ser, om output ændrer sig, når det ikke burde.
 
 **Fase 3: Løbende overvågning**
@@ -2432,9 +2445,11 @@ Modenhedsmodellen fra kapitel 2 placerer ansvarlig AI som en integreret del af d
 
 5. **Sæt ansvarlig AI på dagsordenen for næste ledelsesmøde.** Ikke som et orienteringspunkt, men som en beslutningssag: "Hvad er vores ambitionsniveau for ansvarlig AI, og hvad er vi villige til at investere i det?"
 
+---
 
+## Del 4: Skalering og fremtid
 
-# Kapitel 13: Skalering — Fra pilot til organisatorisk praksis
+### Kapitel 13: Skalering — Fra pilot til organisatorisk praksis
 
 Tre afdelinger i samme virksomhed har hver deres AI-løsning til kundehåndtering. Ingen af dem ved, hvad de andre gør. Én afdeling bruger et værktøj, der allerede er blevet kasseret af en anden. Den tredje har bygget noget, der faktisk virker — men ingen har hørt om det.
 
@@ -2679,11 +2694,7 @@ Men før du kigger fremad, skal du sikre dig, at fundamentet holder. En organisa
 
 ---
 
-## Del 4: Perspektivet — Hvad nu?
-
-
-
-# Kapitel 14 — AI om to år: Det du skal forberede dig på nu
+### Kapitel 14: AI om to år: Det du skal forberede dig på nu
 
 Forestil dig, at du en tirsdag morgen åbner din laptop og opdager, at tre opgaver, du havde planlagt til denne uge, allerede er løst. Ikke af en kollega. Ikke af en konsulent. Men af et system, der natten forinden har analyseret kundedata, udarbejdet et løsningsforslag, verificeret det mod jeres retningslinjer, sendt det til godkendelse hos den rette person — og efter godkendelse eksekveret det. Du sidder med kaffen i hånden og tænker: hvornår skete det her?
 
@@ -2820,7 +2831,11 @@ De organisationer, der står stærkest om to år, er ikke dem, der har den bedst
 
 ---
 
-# Kapitel 15 — AI starter her — med dig
+---
+
+## Del 5: Afrunding
+
+### Kapitel 15: AI starter her — med dig
 
 Da jeg begyndte at skrive denne bog, startede jeg med en påstand, der måske provokerede: AI er ikke et teknologiprojekt. Det er et ledelsesprojekt. Gennem fjorten kapitler har jeg forsøgt at vise, hvad det betyder i praksis. Ikke med hype. Ikke med løfter om revolution. Men med rammer, modeller og konkrete handlinger, der kan bruges mandag morgen.
 
@@ -2832,7 +2847,7 @@ Lad mig destillere fjorten kapitlers argumenter ned til det essentielle.
 
 **AI-parathed handler om ledelse, ikke teknologi.** Den største barriere for at udnytte AI er ikke mangel på teknologi eller data. Det er mangel på ledelsesmæssig klarhed om, hvad AI skal bruges til, hvem der bestemmer, og hvordan organisationen skal ændre sig for at absorbere det. Det var budskabet i kapitel 1, og det har været den røde tråd siden.
 
-**Modenhed er en rejse med trin, der ikke kan springes over.** Modenhedsmodellen fra kapitel 2 viste, at organisationer bevæger sig fra Ubevidst over Nysgerrig, Eksperimenterende og Integrerende til Transformerende. Hvert trin bygger på det forrige. Du kan ikke springe til Transformerende, fordi du har købt den rigtige teknologi. Du kan kun komme derhen ved at opbygge kapaciteterne trin for trin.
+**Modenhed er en rejse med trin, der ikke kan springes over.** Modenhedsmodellen fra kapitel 2 viste, at organisationer bevæger sig fra Ubevidst over Nysgerrig, Eksperimenterende, Integrerende til Transformerende. Hvert trin bygger på det forrige. Du kan ikke springe til Transformerende, fordi du har købt den rigtige teknologi. Du kan kun komme derhen ved at opbygge kapaciteterne trin for trin.
 
 **Governance er det, der adskiller succes fra kaos.** Uden klare rammer for, hvordan AI-initiativer prioriteres, styres og evalueres, ender organisationer med spredte eksperimenter, der aldrig bliver til reel værdi. AI Governance Canvas fra kapitel 3 og den operationelle model fra kapitel 8 er ikke bureaukrati. De er forudsætningen for at skalere.
 
@@ -2948,98 +2963,80 @@ Du starter. Det er nok.
 
 ## Appendiks A: Terminologiliste
 
-| Dansk term | Brug konsekvent | Undgå |
+Nedenstående tabel viser den konsekvente terminologi, der anvendes i denne bog. Brug den som reference for intern kommunikation om AI.
+
+| Dansk term | Brug konsekvent | Undga |
 |---|---|---|
-| AI-parathed | Altid dette | AI-readiness, AI-modenhed (undtagen i modenhedsmodellen) |
-| Modenhedsmodel | Altid dette | Maturity model, modenhedstrappe |
-| Bestyrelse | Altid dette | Board |
-| Direktion | Altid dette | C-suite (kun i parentes ved introduktion) |
-| Mellemleder | Altid dette | Middle management |
-| Framework | OK på dansk | Rammeværk (for tungt) |
-| Use case | OK på dansk | Anvendelsestilfælde |
-| Governance | OK på dansk | Styring (for vagt som oversættelse) |
-| Skalering | Altid dette | Scaling |
-| Quick wins | OK på dansk | Hurtige gevinster |
-| Modenhedstrin | Altid dette | Modenhedsniveauer, modenhedsstadier |
-| AI-champion | Altid dette | AI-ambassadør |
-| Dataejer | Altid dette | Data steward (kun i parentes) |
-| Scorecard | OK på dansk | Resultatkort |
-| Adoption | OK på dansk | Ibrugtagning (kun som parentes) |
-| Bias | OK på dansk | Systematisk skævhed (kun som parentes ved introduktion) |
-| Hallucination | OK på dansk | — |
-| Prompt | OK på dansk | Instruktion (kun som parentes) |
+| AI-parathed | AI-parathed | AI-readiness, AI-modenhed (uden for modenhedsmodel-kontekst) |
+| Modenhedsmodel | Modenhedsmodel | Maturity model, modenhedstrappe |
+| Bestyrelse | Bestyrelse | Board |
+| Direktion | Direktion | C-suite (undtagen ved forste introduktion) |
+| Mellemleder | Mellemleder | Middle management |
+| Framework | Framework | Rammevaerk |
+| Use case | Use case | Anvendelsestilfaelde |
+| Governance | Governance | Styring (som selvstaendig oversaettelse) |
+| Skalering | Skalering | Scaling |
+| Quick wins | Quick wins | Hurtige gevinster (som selvstaendig term) |
+| Adoption | Adoption (ibrugtagning) | - |
+| Bias | Bias (systematisk skaevhed) | Fordomme (i teknisk kontekst) |
+| Prompt | Prompt / instruktion | - |
+| Scorecard | Scorecard | Resultatkort |
+| Dashboard | Dashboard | Instrumentpanel |
+| Roadmap | Roadmap | Koereplan (som oversaettelse af roadmap) |
+| Eksekveringsstruktur | Eksekveringsstruktur | Eksekeringsstruktur |
+| Samtalestartere | Samtalestartere | Samtalestartererer |
+| Graensetilfaelde | Graensetilfaelde | Kanttilfaelde |
+| Human-in-the-loop | Human-in-the-loop (menneskelig kontrol) | - |
+| Edge cases | Graensetilfaelde (edge cases) | Kanttilfaelde |
 
 ### Modenhedsmodellens fem trin (kanoniske navne)
 
-1. **Ubevidst** — Ingen systematisk tilgang til AI
-2. **Nysgerrig** — Begyndende interesse, ingen koordineret indsats
-3. **Eksperimenterende** — Målrettede forsøg i afgrænsede områder
-4. **Integrerende** — AI er del af flere kerneprocesser
-5. **Transformerende** — AI er integreret i strategi, kultur og operationel model
+| Trin | Navn |
+|---|---|
+| 1 | Ubevidst |
+| 2 | Nysgerrig |
+| 3 | Eksperimenterende |
+| 4 | Integrerende |
+| 5 | Transformerende |
 
-### Modenhedsmodellens fem søjler (kanoniske navne)
+### Modenhedsmodellens fem dimensioner (kanoniske navne)
 
-1. **Kultur** — Åbenhed, eksperimentvillighed, læringskultur
-2. **Kompetencer** — Færdigheder på alle niveauer
-3. **Data** — Tilgængelighed, kvalitet, struktur
-4. **Governance** — Rammer, ansvar, etik, risikostyring
-5. **Ledelsesmandat** — Prioritering, ressourcer, engagement
-
+| Nr. | Dimension |
+|---|---|
+| 1 | Kultur |
+| 2 | Kompetencer |
+| 3 | Data |
+| 4 | Governance |
+| 5 | Ledelsesmandat |
 
 ---
 
 ## Appendiks B: Samlet framework-oversigt
 
-| Framework | Kapitel | Formål | Primær bruger |
+Denne oversigt samler alle navngivne frameworks og modeller i bogen med deres formal, kapitelreference og primaere bruger.
+
+| Framework | Kapitel | Formal | Primaer brugerniveau |
 |---|---|---|---|
-| **AI Readiness Maturity Model** (Modenhedsmodellen) | 2 | Vurdér organisationens AI-parathed på fem dimensioner og fem trin | Alle niveauer |
-| **AI Governance Canvas** | 3 | Bestyrelsens styringsramme med fire kvadranter | Bestyrelse |
-| **AI Portfolio Prioritization Matrix** | 4 | Prioritér AI-initiativer efter forretningsværdi og kompleksitet | Direktion |
-| **AI Accountability Map** | 4 | RACI-matrix for AI-beslutninger i direktionen | Direktion |
-| **Team AI Readiness Scorecard** | 5 | Diagnostisk værktøj for teamets AI-parathed på fem dimensioner | Mellemleder |
-| **Adoption Playbook** | 5 | Fire-faset handlingsplan for AI-adoption i teamet | Mellemleder |
-| **Personal AI Impact Model** | 6 | Personligt udviklingsværktøj med tre lag: opgaver, kompetencer, rolle | Medarbejder |
-| **AI Use Case Journal** | 6 | Dokumentationsformat for AI-eksperimenter og læring | Medarbejder |
-| **AI Role Mandate Template** | 7 | Mandatskabelon for AI-champion, dataejer og etisk funktion | Tværgående roller |
-| **AI Readiness Operating Model** | 8 | Samlet driftsmodel der forbinder alle frameworks | Alle niveauer |
-| **Data Readiness Checklist** | 10 | Tjekliste for datakvalitet og datatilgængelighed | Dataejer / IT |
-| **Responsible AI Checklist** | 12 | Tjekliste for ansvarlig AI per use case | Etisk funktion / Projektleder |
-
-### Hvordan frameworks kobler sammen
-
-```
-BESTYRELSE
-  └─ AI Governance Canvas (kap. 3) ◄── modtager rapportering
-       │
-DIREKTION
-  └─ AI Portfolio Prioritization Matrix (kap. 4) ◄── prioriterer initiativer
-  └─ AI Accountability Map (kap. 4) ◄── fordeler ansvar
-       │
-MELLEMLEDER
-  └─ Team AI Readiness Scorecard (kap. 5) ◄── diagnosticerer team
-  └─ Adoption Playbook (kap. 5) ◄── driver adoption
-       │
-MEDARBEJDER
-  └─ Personal AI Impact Model (kap. 6) ◄── personlig udvikling
-  └─ AI Use Case Journal (kap. 6) ◄── dokumenterer læring
-       │
-TVÆRGÅENDE ROLLER (kap. 7)
-  └─ AI-champion ◄── driver adoption og videndeling
-  └─ Dataejer ◄── sikrer datakvalitet
-  └─ Etisk funktion ◄── sikrer ansvarlighed
-
-MODENHEDSMODELLEN (kap. 2) = det underliggende vurderingsframework
-AI READINESS OPERATING MODEL (kap. 8) = det samlende driftssystem
-```
-
+| **AI Readiness Maturity Model (Modenhedsmodellen)** | 2 | Vurderer organisationens AI-parathed pa tvaers af fem dimensioner og fem trin | Alle niveauer — bestyrelse til medarbejder |
+| **AI Governance Canvas** | 3 | Strukturerer bestyrelsens tilsyn med AI i fire kvadranter: strategisk alignment, risiko/compliance, investering og modenhed | Bestyrelse |
+| **AI Portfolio Prioritization Matrix** | 4 | Prioriterer AI-initiativer efter forretningsvaerdi og implementeringskompleksitet i fire kategorier: Quick Wins, Strategiske Satsninger, Eksperimenter, Parker | Direktion |
+| **AI Accountability Map (RACI)** | 4 | Fastlaegger ansvar for AI-beslutningsomrader pa tvaers af direktionsroller | Direktion |
+| **Team AI Readiness Scorecard** | 5 | Maler teamets AI-parathed pa fem dimensioner (Kompetencer, Mindset, Processer, Data, Ledelsessupport) med score 1-5 | Mellemledere |
+| **AI Adoption Playbook** | 5 | Trinvis implementeringsplan i fire faser: Awareness, Eksperimentering, Integration, Optimering | Mellemledere |
+| **Personal AI Impact Model** | 6 | Hjaelper den enkelte medarbejder med at kortlaegge AI's pavirkning pa opgaver, kompetencer og rolle i tre lag | Medarbejdere |
+| **AI Use Case Journal** | 6 | Dokumentationsvaerktoj til systematisk registrering af AI-eksperimenter og laering | Medarbejdere |
+| **AI Role Mandate Template** | 7 | Mandatskabeloner for de tre nogleroller: AI-champion, Dataejer og Etisk funktion | Direktion / mellemledere |
+| **AI Readiness Operating Model** | 8 | Samlet driftsmodel der forbinder alle frameworks pa tvaers af fire organisatoriske niveauer med definerede dataflows, mandater og kadencer | Direktion / alle niveauer |
 
 ---
 
 ## Appendiks C: Templates og skabeloner
 
-Herunder er alle bogens centrale templates samlet. De kan kopieres og tilpasses til din organisations behov.
+Denne sektion samler de vigtigste skabeloner fra bogens kapitler i en samlet reference. Brug dem som udgangspunkt og tilpas til jeres organisation.
 
-### C.1 Modenhedsmodel — Selvevalueringsskema (kap. 2)
+---
+
+### C.1 Modenhedsmodel — Selvevalueringsskema (fra kapitel 2)
 
 | Dimension | Min vurdering (1-5) | Kollegas vurdering (1-5) | Forskel | Prioriteret handling |
 |---|---|---|---|---|
@@ -3050,117 +3047,143 @@ Herunder er alle bogens centrale templates samlet. De kan kopieres og tilpasses 
 | Ledelsesmandat | | | | |
 | **Gennemsnit** | | | | |
 
-*Instruktion: Vurder for hver dimension, hvilket af de fem modenhedstrin (1=Ubevidst, 2=Nysgerrig, 3=Eksperimenterende, 4=Integrerende, 5=Transformerende) din organisation befinder sig på. Gennemsnittet giver et overordnet billede, men det er de enkelte dimensioner — særligt den laveste — der styrer prioriteringen.*
+**Instruktion:** Udfyld individuelt, saml derefter med mindst fem kollegaer fra forskellige niveauer. Den laveste dimension er jeres flaskehals.
 
-### C.2 AI Governance Canvas (kap. 3)
+---
 
-| Kvadrant | Kernespørgsmål | Status | Handling |
+### C.2 AI Governance Canvas — Template (fra kapitel 3)
+
+| Kvadrant | Kernesporgsmaal | Bestyrelsens rolle | Rapportering fra direktionen |
 |---|---|---|---|
-| **1. Strategisk alignment** | Er AI-indsatsen koblet til forretningsstrategien? | | |
-| **2. Risiko og compliance** | Hvad er vores eksponering? | | |
-| **3. Investering og ressourceallokering** | Bruger vi nok — de rigtige steder? | | |
-| **4. Fremdrift og modenhed** | Rykker vi os? | | |
+| **1. Strategisk alignment** | Er AI-indsatsen koblet til forretningsstrategien? | Godkende retning og prioriteter | Strategisk AI-roadmap, kobling til forretningsmaal |
+| **2. Risiko og compliance** | Hvad er vores eksponering? | Fastlaegge risikoappetit og tilsynskrav | Risikoregister, compliance-status |
+| **3. Investering og ressourceallokering** | Bruger vi nok — de rigtige steder? | Godkende investeringsramme | Budgetforbrug, portefoljeoversigt |
+| **4. Fremdrift og modenhed** | Rykker vi os? | Monitorere fremskridt mod modenhedsmaal | Modenhedsvurdering, milepaalsstatus |
 
-### C.3 AI Portfolio Prioritization Matrix — Scoringskema (kap. 4)
+---
 
-| AI-initiativ | Forretningsværdi (1-10) | Implementeringskompleksitet (1-10) | Kategori | Prioritet |
-|---|---|---|---|---|
-| | | | Quick Win / Strategisk Satsning / Eksperiment / Parkér | |
-| | | | | |
-| | | | | |
+### C.3 AI Portfolio Prioriteringsmatrix — Template (fra kapitel 4)
 
-*Forretningsværdi: 1-3 = Begrænset, 4-6 = Moderat, 7-10 = Høj. Implementeringskompleksitet: 1-3 = Lav, 4-6 = Moderat, 7-10 = Høj.*
+| AI-initiativ | Forretningsvaerdi (1-10) | Begrundelse vaerdi | Kompleksitet (1-10) | Begrundelse kompleksitet | Kategori |
+|---|---|---|---|---|---|
+| | | | | | Quick Win / Strategisk Satsning / Eksperiment / Parker |
+| | | | | | |
+| | | | | | |
 
-### C.4 AI Accountability Map — RACI-matrix (kap. 4)
+---
 
-| Beslutningsområde | Adm. direktør | CTO/CIO | CFO | HR-dir. | Forretningsdir. | Juridisk |
+### C.4 AI Accountability Map — RACI-matrice (fra kapitel 4)
+
+| Beslutningsomraade | Adm. direktor | Teknologi-direktor | Okonomidirektor | Forretningsdirektor(er) | HR-direktor | Juridisk direktor |
 |---|---|---|---|---|---|---|
-| AI-strategi | A | R | C | I | C | I |
-| Datakvalitet | I | A | I | I | R | C |
-| Kompetenceudvikling | C | C | I | A | R | I |
-| AI-governance/etik | C | R | I | I | I | A |
-| Budget/investering | A | C | R | I | C | I |
-| Implementering | I | A | C | I | R | I |
-| Kultur/forandring | C | I | I | A | R | I |
+| AI-strategi og roadmap | | | | | | |
+| Dataejerskab og -kvalitet | | | | | | |
+| AI-kompetenceudvikling | | | | | | |
+| AI-governance og etik | | | | | | |
+| Implementering og drift | | | | | | |
+| Budget og ressourcetildeling | | | | | | |
+| Kultur og forandringsledelse | | | | | | |
+| Leverandorstyring | | | | | | |
 
-*R = Responsible (udfører), A = Accountable (ansvarlig), C = Consulted (høres), I = Informed (informeres)*
+**Roller:** O = Overordnet ansvarlig, U = Udforer, H = Hores, I = Orienteres. Praecis en "O" per raekke.
 
-### C.5 Team AI Readiness Scorecard (kap. 5)
+---
 
-| Dimension | Score (1-5) | Vigtigste observation | Prioriteret handling |
+### C.5 Team AI Readiness Scorecard (fra kapitel 5)
+
+| Dimension | Score (1-5) | Vigtigste observation | Forste handling |
 |---|---|---|---|
 | Kompetencer | | | |
 | Mindset | | | |
 | Processer | | | |
 | Data | | | |
 | Ledelsessupport | | | |
-| **Samlet vurdering** | | | |
+| **Samlet gennemsnit** | | | |
 
-*Note: Scorecardets dimensioner er tilpasset teamniveauet og mapper til modenhedsmodellens organisatoriske dimensioner således: Kompetencer↔Kompetencer, Mindset↔Kultur, Data↔Data, Ledelsessupport↔Ledelsesmandat. Governance vurderes på organisatorisk niveau (kap. 2). Processer er en team-specifik dimension.*
+**Tommelfingerregel:** Din laveste score er din flaskehals. Start der.
 
-### C.6 AI Use Case Journal (kap. 6)
+---
 
-| Dato | Hvad prøvede jeg? | Hvad virkede? | Hvad lærte jeg? | Hvad deler jeg? |
-|---|---|---|---|---|
-| | | | | |
-| | | | | |
-| | | | | |
+### C.6 AI Use Case Journal — Template (fra kapitel 6)
 
-### C.7 AI Role Mandate Template (kap. 7)
-
-**Rolle:** [AI-champion / Dataejer / Etisk funktion]
-
-| Element | Beskrivelse |
+| Felt | Udfyldes med |
 |---|---|
-| **Formål** | |
-| **Kerneansvar** | |
-| **Beslutningskompetence** | |
-| **Rapporteringslinje** | |
-| **Tidsforbrug** | |
-| **Succeskriterier** | |
-| **Evalueringsfrekvens** | |
+| **Dato** | |
+| **Opgave** | Hvad forsoegte jeg at goere? |
+| **AI-vaerktoj** | Hvilket vaerktoj brugte jeg? |
+| **Hvad proevede jeg?** | Beskriv kort, hvad du bad AI om. |
+| **Hvad virkede?** | Hvad var godt ved resultatet? |
+| **Hvad virkede ikke?** | Hvad var daarligt? |
+| **Hvad laerte jeg?** | Hvad goer jeg anderledes naeste gang? |
+| **Hvad deler jeg?** | Er dette relevant for mine kollegaer? |
+| **Tidsbesparelse** | Estimeret tid sparet (eller brugt ekstra). |
 
-### C.8 Data Readiness Checklist (kap. 10)
+---
 
-| Tjekpunkt | Status | Ansvarlig | Kommentar |
+### C.7 Rolle-mandatskabelon (fra kapitel 7)
+
+| Element | AI-champion | Dataejer | Etisk funktion |
 |---|---|---|---|
-| Relevante datakilder er identificeret | ☐ | | |
-| Data er tilgængelig i et brugbart format | ☐ | | |
-| Datakvalitet er vurderet (fuldstændighed, nøjagtighed, aktualitet) | ☐ | | |
-| Dataejer er udpeget | ☐ | | |
-| Juridiske krav er afklaret (GDPR, samtykke) | ☐ | | |
-| Dataadgang er etableret for relevante teams | ☐ | | |
-| Datastandarder er defineret | ☐ | | |
-| Backup og versionering er på plads | ☐ | | |
+| **Formaal** | Drive AI-adoption og videndeling | Sikre datakvalitet og tilgaengelighed | Sikre etisk og ansvarlig AI-brug |
+| **Ansvar** | Identificere use cases, facilitere traening, indsamle feedback | Definere kvalitetsstandarder, godkende dataadgang, overvaage kvalitet | Vurdere bias-risici, overvaage regeloverholdelse, raadgive |
+| **Beslutningskompetence** | Kan godkende lokale eksperimenter | Kan godkende/afvise dataadgang i eget domain | Kan kraeve etisk review for idriftsaettelse |
+| **Refererer til** | Mellemleder / AI-styregruppe | Funktionsleder / AI-styregruppe | Direktion / bestyrelse ved eskalering |
+| **Succeskriterier** | Antal eksperimenter, adoptionsrate, delte use cases | Datakvalitetsscore, tid for dataadgang | Andel AI-losninger med etisk review |
 
-### C.9 Responsible AI Checklist (kap. 12)
+---
 
-| Tjekpunkt | Status | Kommentar |
+### C.8 30/60/90-dages implementeringsplan (fra kapitel 8 og 9)
+
+| Periode | Fokus | Noglemilepael |
 |---|---|---|
-| **Formål og proportionalitet** | | |
-| Er use casen nødvendig, og er AI det rigtige værktøj? | ☐ | |
-| Er den forventede gevinst proportionel med risikoen? | ☐ | |
-| **Datakvalitet og bias** | | |
-| Er træningsdata repræsentativ for den tilsigtede population? | ☐ | |
-| Er der screenet for systematisk bias? | ☐ | |
-| **Gennemsigtighed** | | |
-| Er det tydeligt for brugere, at AI er involveret? | ☐ | |
-| Kan beslutningsgrundlaget forklares? | ☐ | |
-| **Menneskelig kontrol** | | |
-| Er der human-in-the-loop for højrisikobeslutninger? | ☐ | |
-| Kan AI-beslutninger overrules manuelt? | ☐ | |
-| **Overvågning og vedligeholdelse** | | |
-| Er der etableret løbende overvågning af modelpræstation? | ☐ | |
-| Er der en plan for opdatering og vedligeholdelse? | ☐ | |
-| **Compliance** | | |
-| Er EU AI Act-risikokategori vurderet? | ☐ | |
-| Er GDPR-krav overholdt? | ☐ | |
+| **Dag 1-30** | Fundament: Modenhedsvurdering, roller udpeget, governance pa plads, pilotprojekt valgt | Alle frameworks i forste version. Organisationen ved, at noget er i gang. |
+| **Dag 31-60** | Aktivering: Mellemleder- og medarbejderniveau aktiveret, forste rapporteringscyklus, pilot bygges og testes | Alle fire niveauer aktiveret. Forste prototype med rigtige brugere. |
+| **Dag 61-90** | Optimering og forankring: Forste cyklusgennemgang, bestyrelsens forste kvartalsrapport, pilotresultater evalueret | Styringsmodellen har gennemfort sin forste fulde cyklus. Beslutning om naeste skridt. |
 
-### C.10 30/60/90-dages implementeringsplan (kap. 8-9)
+---
 
-| Periode | Governance-aktiviteter (kap. 8) | Pilot-aktiviteter (kap. 9) |
-|---|---|---|
-| **Dag 0-30** | Modenhedsvurdering. Etablér roller (AI-champion, dataejer). Definér governance-ramme. | Vælg første use case. Sammensæt pilotteam. Definér succeskriterier. |
-| **Dag 30-60** | Aktivér rapporteringsstruktur. Gennemfør første scorecard-runde. | Gennemfør eksperimentfase. Dokumentér læringer i Use Case Journal. |
-| **Dag 60-90** | Første governance-cyklus afsluttet. Evaluer og justér. | Evaluér pilotresultater. Beslut skalering eller justering. Rapportér til direktion. |
+### C.9 Data Readiness Checklist (fra kapitel 10)
+
+**Tilgaengelighed:**
+- [ ] Vi ved, hvilke data vi har brug for
+- [ ] Vi ved, hvor disse data befinder sig
+- [ ] Vi kan teknisk tilga data
+- [ ] Vi har faaet de noedvendige tilladelser
+- [ ] Data kan traekkes ud inden for rimelig tid
+
+**Kvalitet:**
+- [ ] Vi kender datafejlenes omfang
+- [ ] Datafejlene er pa et niveau, vi kan haandtere
+- [ ] Data er nogenlunde konsistent i format
+- [ ] Vi har en plan for at haandtere kvalitetsproblemer
+- [ ] Vi har verificeret data med domaeneeksperter
+
+**Ejerskab og ansvar:**
+- [ ] Der er en navngiven dataejer
+- [ ] Dataejeren er informeret og indforstaaet
+- [ ] Ansvaret for datakvalitet er placeret
+- [ ] Der er en proces for at rapportere og rette datafejl
+
+**Etik og compliance:**
+- [ ] Vi har vurderet personoplysninger (GDPR)
+- [ ] Vi har vurderet bias-risiko
+- [ ] Vi har afklaret juridiske rammer
+- [ ] Vi har vurderet datakilders tilladelser
+
+---
+
+### C.10 Responsible AI Checklist (fra kapitel 12)
+
+| Nr. | Sporgsmaal | Vurdering | Ansvarlig |
+|---|---|---|---|
+| 1 | Hvad er formaalet med AI-anvendelsen, og hvilken forretningsvaerdi skaber den? | Beskriv kort | Produktejer |
+| 2 | Hvilke data bruges, og er der risiko for bias? | Ja / Nej / Uvist + begrundelse | Dataansvarlig |
+| 3 | Hvem paavirkes af AI-systemets beslutninger? | Beskriv maalgruppen | Produktejer |
+| 4 | Kan AI-systemets output forklares? | Ja / Delvist / Nej | Teknisk ansvarlig |
+| 5 | Er der menneskelig kontrol i processen? | Beskriv kontrolmekanisme | Funktionsleder |
+| 6 | Hvilken risikokategori falder anvendelsen i? | Lav / Mellem / Hoej / Kritisk | Etisk funktion |
+| 7 | Er der regulatoriske krav? | Beskriv krav | Juridisk |
+| 8 | Hvordan overvaages AI-systemet loebende? | Beskriv monitoreringsplan | Driftsansvarlig |
+| 9 | Hvad er exit-planen? | Beskriv tilbagerulningsproces | Driftsansvarlig |
+| 10 | Er der gennemfoert en bias-screening? | Ja / Nej + dato | Dataansvarlig |
 
